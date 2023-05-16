@@ -1,0 +1,95 @@
+﻿@model project1.ViewModel.ShoppingCartModel
+
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.totalPrice = 0;
+}
+
+<h3>Cart</h3>
+
+
+<table class="table">
+    <tr>
+        <th>
+            brand 
+        </th>
+        <th>
+           color
+        </th>
+        <th>
+           description
+        </th>
+        <th>
+       price
+        </th>
+        <th>
+          size
+        </th>
+        <th>
+         type
+        </th>
+        <th></th>
+    </tr>
+    @if (Model != null)
+    {
+
+
+        foreach (var item in Model.bikes)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.brand)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.price)
+                    @{ ViewBag.totalPrice = (Int32.Parse(ViewBag.totalPrice.ToString()) + Int32.Parse(item.price.ToString())).ToString(); }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.size)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.type)
+                </td>
+                <td>
+                </td>
+            </tr>
+        }
+        foreach (var item in Model.parts)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.brand)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.price)
+                    @{ ViewBag.totalPrice = (Int32.Parse(ViewBag.totalPrice.ToString()) + Int32.Parse(item.price.ToString())).ToString(); }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.size)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.type)
+                </td>
+                <td><a href="@Url.Action("RemoveFromCart", new { id = item.id })">Remove</a></td>
+
+                <td>
+                </td>
+            </tr>
+        }
+    }
+
+</table>
+<h3>Total price : @ViewBag.totalPrice </h3>

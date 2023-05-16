@@ -1,0 +1,26 @@
+﻿@if (Session["loggedIn"]=="true")
+{
+    using (Html.BeginForm("Index", "Home", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+<ul class="nav  navbar-right" >
+    <li class="tab_right_header">
+        @Html.ActionLink("Hello " + Session["userName"], "EditProfile", "Home", routeValues: null, htmlAttributes: new { @class = "form-control" ,title = "Manage" })
+    </li>
+    <li class="tab_right_header">
+        @Html.ActionLink("Cart" + Session["counterOfItemsCart"], "Cart", "Shop", routeValues: null, htmlAttributes: new { @class = "form-control ", id = "loginLink" })
+    </li>
+    <li class="tab_right_header">
+        @Html.ActionLink("Log out", "Logout", "Home", routeValues: null, htmlAttributes: new { @class = "form-control ", id = "loginLink" })
+    </li>
+  
+</ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Log in", "LoginPage", "Home", routeValues: null, htmlAttributes: new {@class="form-control", id = "loginLink" })</li>
+    </ul>
+}

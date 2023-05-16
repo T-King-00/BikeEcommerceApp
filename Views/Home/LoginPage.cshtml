@@ -1,0 +1,64 @@
+﻿@model project1.ServiceReference1.User
+
+@{
+    ViewBag.Title = "LoginPage";
+}
+
+<div class="container">
+    <div class="card">
+        @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+        {
+            <div class="card-body">
+                <h3 class="mb-5 mt-3">Sign in</h3>
+                <!-- Email input -->
+                <div class="row">
+                    @Html.TextBoxFor(user => user.UserName, new { @class = "form-control", @id = "loginName", @style = "width: 100%" })
+                    <label class="form-label" for="loginName">Email or username</label>
+                </div>
+
+
+                <!-- Password input -->
+                <div class="row">
+                    @Html.TextBoxFor(user => user.password, new { @class = "form-control", @type = "password", @id = "loginPassword", @style = "width: 100%" })
+
+                </div>
+
+
+                <!-- 2 column grid layout -->
+                <div class="row mb-4">
+                    <div class="col-md-6 d-flex justify-content-center">
+                        <!-- Checkbox -->
+                        <div class="form-check mb-3 mb-md-0">
+                            <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked />
+                            <label class="form-check-label" for="loginCheck"> Remember me </label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 d-flex justify-content-center">
+                        <!-- Simple link -->
+                        <a href="#!">Forgot password?</a>
+                    </div>
+                </div>
+
+                <!-- Submit button -->
+
+
+                <button type="submit" class="btn btn-primary btn-block col-12 m-2  d-flex justify-content-center">Sign in</button>
+
+
+
+
+                <!-- Register buttons -->
+                <div class="text-center">
+                    <p>
+                        Not a member?
+                        @Html.ActionLink("Register", "RegisterPage")
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+
+
+
+</div>

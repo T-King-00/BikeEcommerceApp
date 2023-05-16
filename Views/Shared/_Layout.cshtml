@@ -1,0 +1,59 @@
+﻿@using System.Web.UI.HtmlControls
+@using project1.Controllers
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body>
+<nav class="header1  " style="background: #d7d7da">
+    <ul class="tabs_header">
+        <li class="tab_header nav-item">
+            @Html.ActionLink("Home","Index", "Home", "Home",new {@class="nav-link"})
+        </li>
+        <li class="tab_header nav-item">
+            @Html.ActionLink("Bikes", "Bikes","Shop", "Shop", new { @class = "nav-link" })
+        </li>
+        <li class="tab_header nav-item">
+            @Html.ActionLink("Parts", "Parts","Shop", "Shop", new { @class = "nav-link" })
+        </li>
+        <li class="tab_header nav-item">
+            @Html.ActionLink("Rent a bike", "Rent_Bike","Shop", "Shop", new { @class = "nav-link" })
+        </li>
+
+       
+        <li class="tab_right_header nav-item">
+            @Html.Partial("_loginPartialView")
+        </li>
+
+    </ul>
+</nav>
+
+
+
+<div class="container body-content" style="padding-top: 20px;">
+    
+    
+
+    
+
+    @RenderBody()
+    <hr/>
+
+
+
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+</body>
+</html>

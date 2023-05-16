@@ -1,0 +1,253 @@
+﻿@model IEnumerable<project1.ServiceReference2.Part>
+
+@{
+    ViewBag.Title = "Bikes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script type="text/javascript">
+    function AddToCart(item) {
+        var itemId = $(item).attr("id");
+        var formData = new FormData();
+        formData.append("id", itemId);
+        $.ajax({
+            async: true,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            data: formData,
+            url: '/Shopping/Index',
+            success: function (data) {
+                if (data.Success) {
+                    $("#cartItem").text("Cart(" + data.Counter + ")");
+                }
+            },
+            error: function () {
+                alert("There is some problem.");
+            }
+        });
+    }
+</script>
+
+<body class="userPage" style="background-image: url('../Content/Images/wallpaper.jpeg');">
+<h2>Parts</h2>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-2" style="margin: 5%; color: black">
+            <div class="card userPage">
+                <div class="content userPage">
+
+                    <a href="@Url.Action("PartDetail", new {@item.id})">
+
+                        <div class="imgBx userPage">
+                            <img src="~/Content/Images/0275007530.jpg">
+                        </div>
+                    </a>
+
+                    <div class="contentBx userPage">
+                        <h3 style="color: black">
+                            @Html.DisplayFor(modelItem => item.brand)
+                            <br><span> @item.type</span>
+                        </h3>
+                        <span class="car-price">
+                            <b style="text-align: center"> £ @Html.DisplayFor(modelItem => item.price)</b>
+                        </span>
+                        <br />
+
+                        @Ajax.ActionLink("Add To Cart ", "AddToCart", "Shop",
+                            new { ItemID = @item.id, fromWhere = "parts" }, new AjaxOptions() { HttpMethod = "Post" });
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+    }
+
+</div>
+  
+
+
+
+
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.size)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.type)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.brand)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.size)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.type)
+                </td>
+               
+            </tr>
+        }
+
+    </table>
+
+</body>
+<style>
+
+
+    .userPage body {
+        display: block;
+        /*background: #161616;*/
+        min-height: 100vh;
+    }
+
+    .userPage section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* background: linear-gradient(#DA22FF, #9733EE);
+        clip-path: circle(30% at right 70%);*/
+    }
+
+    .userPage section::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* background: linear-gradient(#E55D87, #5FC3E4);
+        clip-path: circle(20% at 10% 10%);*/
+    }
+
+    .userPage .container {
+        position: relative;
+        z-index: 1;
+    }
+
+        .userPage .container .card {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            display: flex;
+            margin: auto;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+            .userPage .container .card .content {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                flex-direction: column;
+                transition: 0.5s;
+            }
+
+            .userPage .container .card:hover .content {
+                transform: translateY(-20px);
+            }
+
+            .userPage .container .card .content .imgBx {
+                position: relative;
+                width: 150px;
+                height: 150px;
+                overflow: hidden;
+            }
+
+                .userPage .container .card .content .imgBx img {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+            .userPage .container .card .content .contentBx h3 {
+                color: #fff;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                font-weight: 500;
+                font-size: 18px;
+                text-align: center;
+                margin: 20px 0 10px;
+                line-height: 1.1em;
+            }
+
+                .userPage .container .card .content .contentBx h3 span {
+                    font-size: 12px;
+                    font-weight: 300;
+                    text-transform: initial;
+                }
+
+            .userPage .container .card .sci {
+                position: absolute;
+                bottom: 50px;
+                display: flex;
+            }
+
+                .userPage .container .card .sci li {
+                    list-style: none;
+                    margin: 0 10px;
+                    transform: translateY(40px);
+                    transition: 0.5s;
+                    opacity: 0;
+                }
+
+            .userPage .container .card:hover .sci li {
+                transform: translateY(0px);
+                opacity: 1;
+            }
+
+            .userPage .container .card .sci li a {
+                color: #fff;
+                font-size: 20px;
+            }
+</style>

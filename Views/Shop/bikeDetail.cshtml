@@ -1,0 +1,270 @@
+﻿@using Microsoft.Ajax.Utilities
+@using project1.ServiceReference2
+@model project1.ViewModel.ItemViewModel
+
+
+@{
+    ViewBag.Title = "bikeDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h2>bikeDetail</h2>
+<script src="~/Content/JavaScript.js"></script>
+<br />
+<script type="text/javascript">
+    function AddToCart(item) {
+        var itemId = $(item).attr("id");
+        var formData = new FormData();
+        formData.append("id", itemId);
+        $.ajax({
+            async: true,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            data: formData,
+            url: '/Shopping/Index',
+            success: function (data) {
+                if (data.Success) {
+                    $("#cartItem").text("Cart(" + data.Counter + ")");
+                }
+            },
+            error: function () {
+                alert("There is some problem.");
+            }
+        });
+    }
+</script>
+
+<div class="container mt-5 mb-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="images p-3">
+                            <div class="text-center p-4"> <img id="main-image" src="https://i.imgur.com/Dhebu4F.jpg" width="250" /> </div>
+                            <div class="thumbnail text-center"> <img onclick="change_image(this)" src="https://i.imgur.com/Rx7uKd0.jpg" width="70"> <img onclick="change_image(this)" src="https://i.imgur.com/Dhebu4F.jpg" width="70"> </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="product p-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center"> <i class="fa fa-long-arrow-left"></i> <span class="ml-1">Back</span> </div> <i class="fa fa-shopping-cart text-muted"></i>
+                            </div>
+                            <div class="mt-4 mb-3">
+                                <span class="text-uppercase text-muted brand"> @Html.DisplayFor(model => model.bikeObjToView.brand)</span>
+                                <h5 class="text-uppercase">@Html.DisplayFor(model=> model.bikeObjToView.type)</h5>
+                                <div class="price d-flex flex-row align-items-center">
+                                    <span class="act-price">@Html.DisplayFor(model => model.bikeObjToView.price) £ </span>
+                                </div>
+                            </div>
+                            <p class="about">@Html.DisplayFor(model => model.bikeObjToView.description)</p>
+
+                            <div class="cart mt-4 align-items-center">
+                                @Ajax.ActionLink("Add To Cart ", "AddToCart", "Shop",
+                                    new { ItemID = @Model.bikeObjToView.id, fromWhere = "bikes" }, new AjaxOptions() { HttpMethod = "Post" }, new { @class = "btn btn-danger text-uppercase mr-2 px-4" });
+                               
+                                <i class="fa fa-heart text-muted"></i> <i class="fa fa-share-alt text-muted"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <h2>Reviews</h2>
+    <br/>
+    @foreach (var item in Model.reviews)
+    {
+
+        <div>
+            <b>@item.userName : </b>
+            @item.review
+            <div>
+                <h6>
+                    &nbsp; Date of review : @item.dateofReview
+                </h6>
+            </div>
+        </div>
+        <br/>
+    }
+
+</div>
+
+
+
+
+
+
+<div>
+
+    @using (Html.BeginForm("addReview", "Shop", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+      
+        <script src="https://use.fontawesome.com/a6f0361695.js"></script>
+
+        <h2 id="fh2">WE APPRECIATE YOUR REVIEW!</h2>
+        <h6 id="fh6">Your review will help us to improve our web hosting quality products, and customer services.</h6>
+        <div>
+            <form id="feedback" action="">
+                <div class="pinfo">Your personal info</div>
+                <div class="row m-2 p-2">
+                    <div class="form-group">
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon p-3"><i class="fa fa-user"></i></span>
+                                @Html.TextBoxFor(model => model.reviewobj.userName, new
+                           {
+                               @class = "form-control",
+                                    @type = "text",
+
+                               @placeholder = "username"
+
+                           });
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row m-2 p-2">
+
+                    <div class="pinfo">Rate our overall services.</div>
+
+                    <div class="form-group">
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon p-3"><i class="fa fa-heart"></i></span>
+
+                                <select class="form-control" id="rate" name="rating">
+                                    <option value="1star">1</option>
+                                    <option value="2stars">2</option>
+                                    <option value="3stars">3</option>
+                                    <option value="4stars">4</option>
+                                    <option value="5stars">5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row m-2 p-2">
+                    <div class="pinfo">Write your feedback.</div>
+                    <div class="form-group">
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon p-5"><i class="fa fa-pencil"></i></span>
+                                <textarea class="form-control" id="review" rows="3" name="review"></textarea>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                
+                @Html.HiddenFor(model => Model.bikeObjToView.id, new { id = "HiddenText",name="itemId"  })
+
+              @{
+                  ViewBag.itemid = Model.bikeObjToView.id;
+              }
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+
+            </form>
+        </div>
+
+       
+    }
+
+
+
+</div>
+<style>
+    body {
+        background-color: whitesmoke
+    }
+
+    .card {
+        border: none
+    }
+
+    .product {
+        background-color: #eee
+    }
+
+    .brand {
+        font-size: 13px
+    }
+
+    .act-price {
+        color: red;
+        font-weight: 700
+    }
+
+    .dis-price {
+        text-decoration: line-through
+    }
+
+    .about {
+        font-size: 14px
+    }
+
+    .color {
+        margin-bottom: 10px
+    }
+
+    label.radio {
+        cursor: pointer
+    }
+
+        label.radio input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            visibility: hidden;
+            pointer-events: none
+        }
+
+        label.radio span {
+            padding: 2px 9px;
+            border: 2px solid #ff0000;
+            display: inline-block;
+            color: #ff0000;
+            border-radius: 3px;
+            text-transform: uppercase
+        }
+
+        label.radio input:checked + span {
+            border-color: #ff0000;
+            background-color: #ff0000;
+            color: #fff
+        }
+
+    .btn-danger {
+        background-color: #ff0000 !important;
+        border-color: #ff0000 !important
+    }
+
+        .btn-danger:hover {
+            background-color: #da0606 !important;
+            border-color: #da0606 !important
+        }
+
+        .btn-danger:focus {
+            box-shadow: none
+        }
+
+    .cart i {
+        margin-right: 10px
+    }
+
+
+</style>

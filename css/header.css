@@ -1,0 +1,24 @@
+.header1{
+    display: block;
+    margin: auto;
+    height: 80px;
+    font-size: large;
+    box-sizing: border-box;
+
+}
+.tabs_header{
+
+    list-style-type: none;
+    margin: auto;
+    padding: 10px;
+
+}
+.tab_header{
+    margin-left: 50px;
+    float: left;
+}
+.tab_right_header{
+    float: right;
+    margin-right: 50px;
+    list-style-type: none;
+}

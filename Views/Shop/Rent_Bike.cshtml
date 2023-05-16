@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "Rent_Bike";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Renting a Bike</h2>
+
+@if (Session["loggedIn"] != null)
+{
+    if (Session["loggedIn"] != "false")
+    {
+        using (Html.BeginForm("Rent_Bike", "Shop", FormMethod.Post))
+
+        {
+            @Html.AntiForgeryToken()
+
+
+            <div class="card">
+                <div class="row  p-2 m-2">
+                    <div class="col-3">
+                        <label class="card-text" for="bikeType">Bike Type</label><br />
+                        <input class="form-control" id="bikeType" name="bikeType" type="text" />
+
+                    </div>
+                    <div class="col-3">
+                        <label class="card-text form-check-label" for="bikeType">Select pickup location</label><br />
+                        <select class="form-select" name="city" id="city">
+                            <option value="newCairo">New Cairo</option>
+                            <option value="NasrCity">Nasr City</option>
+                            <option value="Shoubra">Shoubra</option>
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <label class="card-text form-check-label" for="bikeType">Select dropoff location</label><br />
+                        <select class="form-select" name="city" id="city">
+                            <option value="newCairo">New Cairo</option>
+                            <option value="NasrCity">Nasr City</option>
+                            <option value="Shoubra">Shoubra</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row p-2 m-2">
+                    <div class="col-3">
+                        <label class="card-text">Select pickup date</label><br />
+                        <input class="form-control" type="date" name="PickUpDate" id="PickUpDate" />
+                    </div>
+                    <div class="col-3">
+                        <label class="card-text">Select drop off date</label><br />
+                        <input class="form-control" type="date" name="DropInDate" id="DropInDate" />
+                    </div>
+                    <div class="col-3">
+                        <label class="card-text">Enter any other requirements</label><br />
+                        <input class="form-control" type="text" name="otherRequirements" />
+                    </div>
+
+
+                </div>
+
+                <br />
+
+                <div class="card-footer p-2">
+                    <div class="m-3">
+                        <button class="btn btn-outline-primary" value="submit">Submit request</button>
+                    </div>
+
+                </div>
+            </div>
+
+        }
+
+    }
+    
+}else
+{
+    <br/>
+    <br/>
+    <div class="text-danger">
+        <h3 style="text-align: center">
+            please register first  before requesting to rent a bike !
+        </h3>
+        @Html.ActionLink("Register Here","RegisterPage","Home","",new
+        {
+            @class="btn btn-primary"
+        })
+    </div>
+    
+}
+
