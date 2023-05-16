@@ -13,6 +13,7 @@
       <xs:element minOccurs="0" name="color" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="id" type="ser:guid" />
+      <xs:element minOccurs="0" name="picurl" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="price" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="size" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="type" nillable="true" type="xs:string" />
@@ -31,6 +32,7 @@
       <xs:element minOccurs="0" name="color" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="id" type="ser:guid" />
+      <xs:element minOccurs="0" name="picurl" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="price" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="size" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="type" nillable="true" type="xs:string" />

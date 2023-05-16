@@ -35,6 +35,9 @@ namespace project1.ServiceReference2 {
         private System.Guid idField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string picurlField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string priceField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -101,6 +104,19 @@ namespace project1.ServiceReference2 {
                 if ((this.idField.Equals(value) != true)) {
                     this.idField = value;
                     this.RaisePropertyChanged("id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string picurl {
+            get {
+                return this.picurlField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.picurlField, value) != true)) {
+                    this.picurlField = value;
+                    this.RaisePropertyChanged("picurl");
                 }
             }
         }
@@ -176,6 +192,9 @@ namespace project1.ServiceReference2 {
         private System.Guid idField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string picurlField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string priceField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -242,6 +261,19 @@ namespace project1.ServiceReference2 {
                 if ((this.idField.Equals(value) != true)) {
                     this.idField = value;
                     this.RaisePropertyChanged("id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string picurl {
+            get {
+                return this.picurlField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.picurlField, value) != true)) {
+                    this.picurlField = value;
+                    this.RaisePropertyChanged("picurl");
                 }
             }
         }

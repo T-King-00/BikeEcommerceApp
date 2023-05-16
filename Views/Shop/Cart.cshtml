@@ -1,4 +1,5 @@
-﻿@model project1.ViewModel.ShoppingCartModel
+﻿@using project1.ViewModel
+@model project1.ViewModel.ShoppingCartModel
 
 @{
     ViewBag.Title = "Cart";
@@ -15,19 +16,19 @@
             brand 
         </th>
         <th>
-           color
+            color
         </th>
         <th>
-           description
+            description
         </th>
         <th>
-       price
+            price
         </th>
         <th>
-          size
+            size
         </th>
         <th>
-         type
+            type
         </th>
         <th></th>
     </tr>
@@ -57,8 +58,10 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.type)
                 </td>
-                <td>
-                </td>
+                
+                <td><a href="@Url.Action("RemoveFromCart","Shop", new { id = item.id })">Remove</a></td>
+
+                
             </tr>
         }
         foreach (var item in Model.parts)
@@ -83,7 +86,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.type)
                 </td>
-                <td><a href="@Url.Action("RemoveFromCart", new { id = item.id })">Remove</a></td>
+                <td><a href="@Url.Action("RemoveFromCart","Shop", new { id = item.id })">Remove</a></td>
 
                 <td>
                 </td>
@@ -92,4 +95,18 @@
     }
 
 </table>
-<h3>Total price : @ViewBag.totalPrice </h3>
+<div class="row">
+    <h3>Total price : @ViewBag.totalPrice </h3>
+
+
+</div>
+<div class="row">
+    <div class="col-6 mx-auto" ></div>
+    @Html.ActionLink("Checkout Items", "Checkout", "Shop", Model, new
+    {
+        @class = "btn btn-primary ",
+       @style="float:none; margin:auto;"
+    })
+
+
+</div>

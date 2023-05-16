@@ -1,4 +1,4 @@
-﻿
+﻿@model project1.ViewModel.RentRequest
 @{
     ViewBag.Title = "Rent_Bike";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,22 +10,19 @@
 {
     if (Session["loggedIn"] != "false")
     {
-        using (Html.BeginForm("Rent_Bike", "Shop", FormMethod.Post))
+        using (Html.BeginForm("Rent_BikePOST", "Shop", FormMethod.Post))
 
         {
-            @Html.AntiForgeryToken()
-
-
             <div class="card">
                 <div class="row  p-2 m-2">
                     <div class="col-3">
                         <label class="card-text" for="bikeType">Bike Type</label><br />
-                        <input class="form-control" id="bikeType" name="bikeType" type="text" />
+                        <input type="text" class="form-control"  id = "bikeType"  name="bikeType"/>
 
                     </div>
                     <div class="col-3">
                         <label class="card-text form-check-label" for="bikeType">Select pickup location</label><br />
-                        <select class="form-select" name="city" id="city">
+                        <select class="form-select" name="pickupcity" id="city">
                             <option value="newCairo">New Cairo</option>
                             <option value="NasrCity">Nasr City</option>
                             <option value="Shoubra">Shoubra</option>
@@ -33,7 +30,7 @@
                     </div>
                     <div class="col-3">
                         <label class="card-text form-check-label" for="bikeType">Select dropoff location</label><br />
-                        <select class="form-select" name="city" id="city">
+                        <select class="form-select" name="dropoffcity" id="city">
                             <option value="newCairo">New Cairo</option>
                             <option value="NasrCity">Nasr City</option>
                             <option value="Shoubra">Shoubra</option>
@@ -43,15 +40,15 @@
                 <div class="row p-2 m-2">
                     <div class="col-3">
                         <label class="card-text">Select pickup date</label><br />
-                        <input class="form-control" type="date" name="PickUpDate" id="PickUpDate" />
+                        <input class="form-control" type="date" name="PickupDate" id="PickUpDate" />
                     </div>
                     <div class="col-3">
                         <label class="card-text">Select drop off date</label><br />
-                        <input class="form-control" type="date" name="DropInDate" id="DropInDate" />
+                        <input class="form-control" type="date" name="dropoffDate" id="DropInDate" />
                     </div>
                     <div class="col-3">
                         <label class="card-text">Enter any other requirements</label><br />
-                        <input class="form-control" type="text" name="otherRequirements" />
+                        <input class="form-control" type="text" name="othercomments"id="othercomments"  />
                     </div>
 
 

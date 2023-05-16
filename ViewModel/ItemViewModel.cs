@@ -11,6 +11,7 @@ namespace project1.ViewModel
     {
 
         public Bike bikeObjToView { get; set; }
+        public Part PartObjToView { get; set; }
         public IEnumerable<ServiceReference2.ItemsReview> reviews { get; set; }
         public ServiceReference2.ItemsReview reviewobj { get; set; }
 
