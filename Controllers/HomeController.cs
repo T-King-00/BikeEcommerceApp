@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
-
 using project1.ServiceReference1;
 
 namespace project1.Controllers
@@ -38,9 +37,11 @@ namespace project1.Controllers
             user.UserName = Request["UserName"];
             user.password = Request["password"];
             ServiceReference1.WebService1SoapClient service = new WebService1SoapClient();
-            if (service.Login(user.UserName, user.password))
+            Guid id = service.Login(user.UserName, user.password);
+            if (id!=Guid.Empty)
             {
                 Session["loggedIn"] = "true";
+                Session["userID"] = id;
                 Session["userName"] = user.UserName;
                 loggedIn = true;
                
@@ -50,8 +51,12 @@ namespace project1.Controllers
                
                 return RedirectToAction("Index");
             }
-            HttpContext.Session["loggedIn"] = "false";
-           
+            else
+            {
+                HttpContext.Session["loggedIn"] = "false";
+
+            }
+
 
             return null;
         }

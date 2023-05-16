@@ -85,10 +85,16 @@
         <div>
             <b>@item.userName : </b>
             @item.review
+            @{ ViewBag.itemid = item.itemId.ToString();
+            }
             <div>
                 <h6>
                     &nbsp; Date of review : @item.dateofReview
                 </h6>
+            </div>
+            <div>
+                <h6>
+                    &nbsp; rating : @item.rating </h6>
             </div>
         </div>
         <br/>
@@ -103,9 +109,9 @@
 
 <div>
 
-    @using (Html.BeginForm("addReview", "Shop", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    @using (Html.BeginForm("addReview", "Shop", new { id =   Model.bikeObjToView.id },FormMethod.Post, new {  id = "logoutForm", @class = "navbar-right" }))
     {
-      
+
         <script src="https://use.fontawesome.com/a6f0361695.js"></script>
 
         <h2 id="fh2">WE APPRECIATE YOUR REVIEW!</h2>
@@ -170,11 +176,9 @@
 
                 </div>
                 
-                @Html.HiddenFor(model => Model.bikeObjToView.id, new { id = "HiddenText",name="itemId"  })
+                @Html.HiddenFor(model => Model.bikeObjToView.id, new { id = "HiddenText",name="id"  })
 
-              @{
-                  ViewBag.itemid = Model.bikeObjToView.id;
-              }
+             
                 <button type="submit" class="btn btn-primary">Submit</button>
 
 

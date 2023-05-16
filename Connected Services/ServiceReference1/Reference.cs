@@ -287,12 +287,12 @@ namespace project1.ServiceReference1 {
     public partial class LoginResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
-        public bool LoginResult;
+        public System.Guid LoginResult;
         
         public LoginResponseBody() {
         }
         
-        public LoginResponseBody(bool LoginResult) {
+        public LoginResponseBody(System.Guid LoginResult) {
             this.LoginResult = LoginResult;
         }
     }
@@ -601,7 +601,7 @@ namespace project1.ServiceReference1 {
             return base.Channel.Login(request);
         }
         
-        public bool Login(string userName, string password) {
+        public System.Guid Login(string userName, string password) {
             project1.ServiceReference1.LoginRequest inValue = new project1.ServiceReference1.LoginRequest();
             inValue.Body = new project1.ServiceReference1.LoginRequestBody();
             inValue.Body.userName = userName;

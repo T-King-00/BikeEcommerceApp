@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using project1.ServiceReference1;
 using project1.ServiceReference2;
 using project1.ViewModel;
 
@@ -11,6 +12,7 @@ namespace project1.Controllers
     public class ShopController : Controller
     {
         ServiceReference2.BikeServiceClient serviceBikes = new ServiceReference2.BikeServiceClient();
+        ServiceReference1.WebService1SoapClient serviceUser = new WebService1SoapClient();
 
 
         // GET: Shop
@@ -158,14 +160,29 @@ namespace project1.Controllers
 
 
         [HttpPost]
-        public ActionResult addReview(ItemsReview rev,string rating)
-
+        public ActionResult addReview(ItemsReview rev,string rating,Guid id)
         {
-            rev.rating=Int32.Parse(rating.Substring(0,1));
-            rev.itemId = ViewBag.itemid ;
-            serviceBikes.addReviews(rev);
+            if (Session["loggedIn"]=="true")
+            {
+                rev.rating = Int32.Parse(rating.Substring(0, 1));
+                rev.userName = Session["userName"].ToString();
 
-            return RedirectToAction("bikeDetail");
+                rev.itemId = id;
+
+                Guid idUser = (Guid)Session["userID"];
+                rev.userID = idUser;
+
+                serviceBikes.addReviews(rev);
+
+                return RedirectToAction("Bikes");
+            }
+            else
+            {
+                return RedirectToAction("RegisterPage", "Home");
+            }
+            
+            
+
         }
 
     }
