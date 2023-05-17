@@ -223,6 +223,13 @@ namespace project1.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/getUserName", ReplyAction="*")]
         System.Threading.Tasks.Task<project1.ServiceReference1.getUserNameResponse> getUserNameAsync(project1.ServiceReference1.getUserNameRequest request);
+        
+        // CODEGEN: Generating message contract since element name authorized from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/paywithcredit", ReplyAction="*")]
+        project1.ServiceReference1.paywithcreditResponse paywithcredit(project1.ServiceReference1.paywithcreditRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/paywithcredit", ReplyAction="*")]
+        System.Threading.Tasks.Task<project1.ServiceReference1.paywithcreditResponse> paywithcreditAsync(project1.ServiceReference1.paywithcreditRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -569,6 +576,74 @@ namespace project1.ServiceReference1 {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class paywithcreditRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="paywithcredit", Namespace="http://tempuri.org/", Order=0)]
+        public project1.ServiceReference1.paywithcreditRequestBody Body;
+        
+        public paywithcreditRequest() {
+        }
+        
+        public paywithcreditRequest(project1.ServiceReference1.paywithcreditRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class paywithcreditRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string authorized;
+        
+        public paywithcreditRequestBody() {
+        }
+        
+        public paywithcreditRequestBody(string authorized) {
+            this.authorized = authorized;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class paywithcreditResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="paywithcreditResponse", Namespace="http://tempuri.org/", Order=0)]
+        public project1.ServiceReference1.paywithcreditResponseBody Body;
+        
+        public paywithcreditResponse() {
+        }
+        
+        public paywithcreditResponse(project1.ServiceReference1.paywithcreditResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class paywithcreditResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public bool paywithcreditResult;
+        
+        public paywithcreditResponseBody() {
+        }
+        
+        public paywithcreditResponseBody(bool paywithcreditResult) {
+            this.paywithcreditResult = paywithcreditResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface WebService1SoapChannel : project1.ServiceReference1.WebService1Soap, System.ServiceModel.IClientChannel {
     }
@@ -721,6 +796,31 @@ namespace project1.ServiceReference1 {
             inValue.Body = new project1.ServiceReference1.getUserNameRequestBody();
             inValue.Body.userid = userid;
             return ((project1.ServiceReference1.WebService1Soap)(this)).getUserNameAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        project1.ServiceReference1.paywithcreditResponse project1.ServiceReference1.WebService1Soap.paywithcredit(project1.ServiceReference1.paywithcreditRequest request) {
+            return base.Channel.paywithcredit(request);
+        }
+        
+        public bool paywithcredit(string authorized) {
+            project1.ServiceReference1.paywithcreditRequest inValue = new project1.ServiceReference1.paywithcreditRequest();
+            inValue.Body = new project1.ServiceReference1.paywithcreditRequestBody();
+            inValue.Body.authorized = authorized;
+            project1.ServiceReference1.paywithcreditResponse retVal = ((project1.ServiceReference1.WebService1Soap)(this)).paywithcredit(inValue);
+            return retVal.Body.paywithcreditResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<project1.ServiceReference1.paywithcreditResponse> project1.ServiceReference1.WebService1Soap.paywithcreditAsync(project1.ServiceReference1.paywithcreditRequest request) {
+            return base.Channel.paywithcreditAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<project1.ServiceReference1.paywithcreditResponse> paywithcreditAsync(string authorized) {
+            project1.ServiceReference1.paywithcreditRequest inValue = new project1.ServiceReference1.paywithcreditRequest();
+            inValue.Body = new project1.ServiceReference1.paywithcreditRequestBody();
+            inValue.Body.authorized = authorized;
+            return ((project1.ServiceReference1.WebService1Soap)(this)).paywithcreditAsync(inValue);
         }
     }
 }

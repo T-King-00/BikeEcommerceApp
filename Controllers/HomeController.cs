@@ -15,6 +15,7 @@ namespace project1.Controllers
         public ActionResult Index()
         {
             return View();
+         
         }
 
         public ActionResult About()
@@ -38,13 +39,12 @@ namespace project1.Controllers
             user.password = Request["password"];
             ServiceReference1.WebService1SoapClient service = new WebService1SoapClient();
             Guid id = service.Login(user.UserName, user.password);
-            if (id!=Guid.Empty)
+            if (id!=Guid.Empty && id!=null )
             {
                 Session["loggedIn"] = "true";
                 Session["userID"] = id;
                 Session["userName"] = user.UserName;
                 loggedIn = true;
-               
                 HttpContext.Session["counterOfItemsCart"] = 0;
                 HttpContext.Session["ItemsCart"] = null;
                 

@@ -170,6 +170,9 @@
     <Content Include="Connected Services\ServiceReference1\project1.ServiceReference1.getUserNameResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\ServiceReference1\project1.ServiceReference1.paywithcreditResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\ServiceReference1\WebService1.disco" />
     <None Include="Connected Services\ServiceReference1\configuration91.svcinfo" />
     <None Include="Connected Services\ServiceReference1\configuration.svcinfo" />
@@ -297,6 +300,7 @@
     <Content Include="Views\Shared\review.cshtml" />
     <Content Include="Views\Shop\RequestedRent.cshtml" />
     <Content Include="Views\Shop\Checkout.cshtml" />
+    <Content Include="Views\Shop\order_done.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

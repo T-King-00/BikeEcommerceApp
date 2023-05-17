@@ -195,11 +195,27 @@ namespace project1.Controllers
         {
             return View();
         }
+    
 
+        public ActionResult order_done()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Checkoutpost()
+        {
+
+            serviceUser.paywithcredit("true");
+
+            return RedirectToAction("order_done");
+        }   
 
         public ActionResult Checkout()
         {
 
+            
             return View();
         }
         [HttpPost]

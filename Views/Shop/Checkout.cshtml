@@ -5,12 +5,14 @@
 }
 
 <h2>Checkout using credit card </h2>
-
 <div class="padding">
     <div class="row">
         <div class="col-sm-6">
             <div class="card">
                 <div class="card-header">
+                    @Html.BeginForm("order_done", "Shop",FormMethod.Post){
+
+
                     <strong>Credit Card</strong>
                     <small>enter your card details</small>
                 </div>
@@ -98,6 +100,7 @@
                     </button>
                 </div>
             </div>
+            }
         </div>
     </div>
 </div>

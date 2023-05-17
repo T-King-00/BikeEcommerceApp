@@ -87,6 +87,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="paywithcredit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authorized" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="paywithcreditResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="paywithcreditResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="guid">
@@ -126,6 +140,12 @@
   <wsdl:message name="getUserNameSoapOut">
     <wsdl:part name="parameters" element="tns:getUserNameResponse" />
   </wsdl:message>
+  <wsdl:message name="paywithcreditSoapIn">
+    <wsdl:part name="parameters" element="tns:paywithcredit" />
+  </wsdl:message>
+  <wsdl:message name="paywithcreditSoapOut">
+    <wsdl:part name="parameters" element="tns:paywithcreditResponse" />
+  </wsdl:message>
   <wsdl:portType name="WebService1Soap">
     <wsdl:operation name="Login">
       <wsdl:input message="tns:LoginSoapIn" />
@@ -146,6 +166,10 @@
     <wsdl:operation name="getUserName">
       <wsdl:input message="tns:getUserNameSoapIn" />
       <wsdl:output message="tns:getUserNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="paywithcredit">
+      <wsdl:input message="tns:paywithcreditSoapIn" />
+      <wsdl:output message="tns:paywithcreditSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebService1Soap" type="tns:WebService1Soap">
@@ -195,6 +219,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="paywithcredit">
+      <soap:operation soapAction="http://tempuri.org/paywithcredit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebService1Soap12" type="tns:WebService1Soap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -236,6 +269,15 @@
     </wsdl:operation>
     <wsdl:operation name="getUserName">
       <soap12:operation soapAction="http://tempuri.org/getUserName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="paywithcredit">
+      <soap12:operation soapAction="http://tempuri.org/paywithcredit" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
