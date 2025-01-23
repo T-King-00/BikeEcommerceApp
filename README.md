@@ -4,4 +4,5 @@ Please refer to the main documentation file for detailed information about this 
 
 ---
 
-**Location**: [BikeEcommerceApp/documentation.docx]
+**Location**:  [Documentation](BikeEcommerceApp/documentation.docx)
+
