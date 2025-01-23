@@ -4,5 +4,5 @@ Please refer to the main documentation file for detailed information about this 
 
 ---
 
-**Location**:  [Documentation](BikeEcommerceApp/documentation.docx)
+**Location**:  [Documentation](/documentation.docx)
 
